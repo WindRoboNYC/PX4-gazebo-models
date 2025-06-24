@@ -489,5 +489,10 @@
             <joint_name>front_wheel_right_steering_joint</joint_name>
 			<joint_name>front_wheel_left_steering_joint</joint_name>
 		</plugin>
+
+        <plugin
+            filename="libAckermannSteering.so"
+            name="custom::AckermannSteering">
+        </plugin>
     </model>
 </sdf>
