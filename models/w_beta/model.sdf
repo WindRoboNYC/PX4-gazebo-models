@@ -1,0 +1,1072 @@
+<sdf version='1.11'>
+  <model name='w_beta'>
+    <pose>0 0 .24 0 0 0</pose>
+    <self_collide>false</self_collide>
+    <static>false</static>
+    <link name='base_link'>
+      <inertial>
+        <pose>-0.118574626614354 0.00025995434930973599 -0.0302884985751798 0 0 0</pose>
+        <mass>11.5</mass>
+        <inertia>
+          <ixx>0.164118721050375</ixx>
+          <ixy>1.8735799343231E-03</ixy>
+          <ixz>-7.63329779662217E-02</ixz>
+          <iyy>0.893695977065881</iyy>
+          <iyz>-4.53971638120568E-04</iyz>
+          <izz>0.942301759860458</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1 1 0.4</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.995098054 1 1 1</diffuse>
+          <ambient>0.995098054 1 1 1</ambient>
+        </material>
+      </visual>
+      <sensor name="air_pressure_sensor" type="air_pressure">
+        <always_on>1</always_on>
+        <update_rate>50</update_rate>
+        <air_pressure>
+          <!-- Noise modeled after BMP390 -->
+          <pressure>
+            <noise type="gaussian">
+              <mean>0</mean>
+              <stddev>3</stddev>
+            </noise>
+          </pressure>
+        </air_pressure>
+      </sensor>
+      <sensor name="magnetometer_sensor" type="magnetometer">
+        <always_on>1</always_on>
+        <update_rate>100</update_rate>
+        <magnetometer>
+          <!-- TODO: update to fix units and coordinate system when we move past Harmonic -->
+          <!-- See https://github.com/gazebosim/gz-sim/pull/2460 -->
+          <!-- 3mgauss RMS: NOTE: noise is in tesla but sensor reports data in gauss -->
+          <!-- Noise modeled after IIS2MDC -->
+          <x>
+            <noise type="gaussian">
+              <stddev>0.0001</stddev>
+            </noise>
+          </x>
+          <y>
+            <noise type="gaussian">
+              <stddev>0.0001</stddev>
+            </noise>
+          </y>
+          <z>
+            <noise type="gaussian">
+              <stddev>0.0001</stddev>
+            </noise>
+          </z>
+        </magnetometer>
+      </sensor>
+      <sensor name="imu_sensor" type="imu">
+        <always_on>1</always_on>
+        <update_rate>250</update_rate>
+        <imu>
+          <angular_velocity>
+            <!-- Noise modeled after IIM42653 -->
+            <!-- 0.05 deg/s converted to rad/s -->
+            <x>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.0008726646</stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.0008726646</stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.0008726646</stddev>
+              </noise>
+            </z>
+          </angular_velocity>
+          <linear_acceleration>
+            <!-- Noise modeled after IIM42653 -->
+            <!-- X & Y axis: 0.65 mg-rms converted to m/ss -->
+            <x>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.00637</stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.00637</stddev>
+              </noise>
+            </y>
+            <!-- Z axis: 0.70 mg-rms converted to m/ss-->
+            <z>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.00686</stddev>
+              </noise>
+            </z>
+          </linear_acceleration>
+        </imu>
+      </sensor>
+      <sensor name="navsat_sensor" type="navsat">
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+      </sensor>
+    </link>
+    <joint name='motor1_joint' type='revolute'>
+      <pose relative_to='base_link'>0.232905435027709 -0.680975950313778 0.086799987792292504 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>motor1_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='motor1_link'>
+      <pose relative_to='motor1_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.0013718469714564 0.00045606731450897902 0.0073133449794331997 0 0 0</pose>
+        <mass>0.091055401402339503</mass>
+        <inertia>
+          <ixx>0.0017997098022500199</ixx>
+          <ixy>0.00059831592731370399</ixy>
+          <ixz>-2.9180888247381602e-06</ixz>
+          <iyy>0.00020796254990806899</iyy>
+          <iyz>-9.7400626864641191e-07</iyz>
+          <izz>0.0019993487307220599</izz>
+        </inertia>
+      </inertial>
+      <collision name='motor1_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <!-- <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/motor1_link.STL</uri>
+          </mesh> -->
+        </geometry>
+      </collision>
+      <visual name='motor1_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/motor1_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990196109 1 1 1</diffuse>
+          <ambient>0.990196109 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='motor2_joint' type='revolute'>
+      <pose relative_to='base_link'>0.23290543502750999 0.68099894846030495 0.086799987792292504 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>motor2_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='motor2_link'>
+      <pose relative_to='motor2_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0014305032114755899 -0.00021090659012745801 0.0073135866330750199 0 0 0</pose>
+        <mass>0.091056722623615596</mass>
+        <inertia>
+          <ixx>0.00195635507139776</ixx>
+          <ixy>0.00029002882339814102</ixy>
+          <ixz>3.0428743722712e-06</ixz>
+          <iyy>5.1323748601635897e-05</iyy>
+          <iyz>4.5325872488288102e-07</iyz>
+          <izz>0.0019993550610476201</izz>
+        </inertia>
+      </inertial>
+      <collision name='motor2_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <!-- <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/motor2_link.STL</uri>
+          </mesh> -->
+        </geometry>
+      </collision>
+      <visual name='motor2_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/motor2_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990196109 1 1 1</diffuse>
+          <ambient>0.990196109 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='motor3_joint' type='revolute'>
+      <pose relative_to='base_link'>-0.32790634716345701 0.73263569922032301 -0.033550012207737803 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>motor3_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='motor3_link'>
+      <pose relative_to='motor3_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0013718027474161601 -0.00045616980930340801 0.0073133274877710099 0 0 0</pose>
+        <mass>0.091055296133623898</mass>
+        <inertia>
+          <ixx>0.0017997089058008301</ixx>
+          <ixy>0.000598315540688855</ixy>
+          <ixz>2.9180241614739701e-06</ixz>
+          <iyy>0.00020796235892841001</iyy>
+          <iyz>9.7416410668095493e-07</iyz>
+          <izz>0.00199934769343766</izz>
+        </inertia>
+      </inertial>
+      <collision name='motor3_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <!-- <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/motor3_link.STL</uri>
+          </mesh> -->
+        </geometry>
+      </collision>
+      <visual name='motor3_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/motor3_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990196109 1 1 1</diffuse>
+          <ambient>0.990196109 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='motor4_joint' type='revolute'>
+      <pose relative_to='base_link'>-0.32790634716328698 -0.73263569922915805 -0.033550012207681001 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>motor4_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='motor4_link'>
+      <pose relative_to='motor4_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.0014305394353528701 0.00021075342762255601 0.0073136083419090498 0 0 0</pose>
+        <mass>0.091056825312321704</mass>
+        <inertia>
+          <ixx>0.00195635690033652</ixx>
+          <ixy>0.00029002920953167697</ixy>
+          <ixz>-3.0429229474669701e-06</ixz>
+          <iyy>5.1323862673045503e-05</iyy>
+          <iyz>-4.5304453840861302e-07</iyz>
+          <izz>0.00199935693898753</izz>
+        </inertia>
+      </inertial>
+      <collision name='motor4_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <!-- <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/motor4_link.STL</uri>
+          </mesh> -->
+        </geometry>
+      </collision>
+      <visual name='motor4_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/motor4_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990196109 1 1 1</diffuse>
+          <ambient>0.990196109 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='motor5_joint' type='revolute'>
+      <pose relative_to='base_link'>0.23290543502762401 0.68099894846028297 -0.025799987792194799 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>motor5_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='motor5_link'>
+      <pose relative_to='motor5_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.00144206884039741 0.00010457013763298699 -0.00731347329195931 0 0 0</pose>
+        <mass>0.091055764859041002</mass>
+        <inertia>
+          <ixx>0.0019895629809236598</ixx>
+          <ixy>0.00014047468210117201</ixy>
+          <ixz>3.0686609132952299e-06</ixz>
+          <iyy>1.81062769655122e-05</iyy>
+          <iyz>2.1778521508269101e-07</iyz>
+          <izz>0.0019993456337022001</izz>
+        </inertia>
+      </inertial>
+      <collision name='motor5_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <!-- <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/motor5_link.STL</uri>
+          </mesh> -->
+        </geometry>
+      </collision>
+      <visual name='motor5_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/motor5_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990196109 1 1 1</diffuse>
+          <ambient>0.990196109 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='motor6_joint' type='revolute'>
+      <pose relative_to='base_link'>0.23290543502750999 -0.68097595031382396 -0.0257999877923085 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>motor6_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='motor6_link'>
+      <pose relative_to='motor6_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0014019666907453001 -0.00035278058782373101 -0.00731336261518518 0 0 0</pose>
+        <mass>0.091055458263771205</mass>
+        <inertia>
+          <ixx>0.0018820721822407</ixx>
+          <ixy>0.00046914297123356702</ixy>
+          <ixz>-2.9843838418467101e-06</ixz>
+          <iyy>0.00012559846268942699</iyy>
+          <iyz>-7.4656086728988697e-07</iyz>
+          <izz>0.0019993470429182599</izz>
+        </inertia>
+      </inertial>
+      <collision name='motor6_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <!-- <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/motor6_link.STL</uri>
+          </mesh> -->
+        </geometry>
+      </collision>
+      <visual name='motor6_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/motor6_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990196109 1 1 1</diffuse>
+          <ambient>0.990196109 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='motor7_joint' type='revolute'>
+      <pose relative_to='base_link'>-0.32790634716331502 -0.73263569922916505 -0.146149987792282 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>motor7_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='motor7_link'>
+      <pose relative_to='motor7_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.00166101285024139 -0.000120465167883221 -0.0072548228527559598 0 0 0</pose>
+        <mass>0.079054414580314397</mass>
+        <inertia>
+          <ixx>0.0019887982013668199</ixx>
+          <ixy>0.000140474760503411</ixy>
+          <ixz>-3.0686766060765701e-06</ixz>
+          <iyy>1.7340530468496e-05</iyy>
+          <iyz>-2.17810643749924e-07</iyz>
+          <izz>0.00199783301883896</izz>
+        </inertia>
+      </inertial>
+      <collision name='motor7_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <!-- <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/motor7_link.STL</uri>
+          </mesh> -->
+        </geometry>
+      </collision>
+      <visual name='motor7_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/motor7_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990196109 1 1 1</diffuse>
+          <ambient>0.990196109 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='motor8_joint' type='revolute'>
+      <pose relative_to='base_link'>-0.32790634716323003 0.73263569922035099 -0.14614998779233901 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>motor8_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='motor8_link'>
+      <pose relative_to='motor8_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.00140196642899793 0.00035278039145292299 -0.0073133608665574799 0 0 0</pose>
+        <mass>0.091055432799156497</mass>
+        <inertia>
+          <ixx>0.0018820720184547399</ixx>
+          <ixy>0.00046914295333832698</ixy>
+          <ixz>2.9843818041830602e-06</ixz>
+          <iyy>0.000125598459607257</iyy>
+          <iyz>7.4656547086783298e-07</iyz>
+          <izz>0.0019993468762170802</izz>
+        </inertia>
+      </inertial>
+      <collision name='motor8_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <!-- <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/motor8_link.STL</uri>
+          </mesh> -->
+        </geometry>
+      </collision>
+      <visual name='motor8_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/motor8_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990196109 1 1 1</diffuse>
+          <ambient>0.990196109 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>motor1_joint</jointName>
+      <linkName>motor1_link</linkName>
+      <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>521</maxRotVelocity>
+      <motorConstant>0.0002888</motorConstant>
+      <momentConstant>0.07077</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>0</motorNumber>
+      <rotorDragCoefficient>0.000919012</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+    <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>motor2_joint</jointName>
+      <linkName>motor2_link</linkName>
+      <turningDirection>cw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>521</maxRotVelocity>
+      <motorConstant>0.0002888</motorConstant>
+      <momentConstant>0.07077</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>1</motorNumber>
+      <rotorDragCoefficient>0.000919012</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+    <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>motor3_joint</jointName>
+      <linkName>motor3_link</linkName>
+      <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>521</maxRotVelocity>
+      <motorConstant>0.0002888</motorConstant>
+      <momentConstant>0.07077</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>2</motorNumber>
+      <rotorDragCoefficient>0.000919012</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+    <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>motor4_joint</jointName>
+      <linkName>motor4_link</linkName>
+      <turningDirection>cw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>521</maxRotVelocity>
+      <motorConstant>0.0002888</motorConstant>
+      <momentConstant>0.07077</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>3</motorNumber>
+      <rotorDragCoefficient>0.000919012</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+    <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>motor5_joint</jointName>
+      <linkName>motor5_link</linkName>
+      <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>521</maxRotVelocity>
+      <motorConstant>0.0002888</motorConstant>
+      <momentConstant>0.07077</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>4</motorNumber>
+      <rotorDragCoefficient>0.000919012</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+    <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>motor6_joint</jointName>
+      <linkName>motor6_link</linkName>
+      <turningDirection>cw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>521</maxRotVelocity>
+      <motorConstant>0.0002888</motorConstant>
+      <momentConstant>0.07077</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>5</motorNumber>
+      <rotorDragCoefficient>0.000919012</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+    <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>motor7_joint</jointName>
+      <linkName>motor7_link</linkName>
+      <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>521</maxRotVelocity>
+      <motorConstant>0.0002888</motorConstant>
+      <momentConstant>0.07077</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>6</motorNumber>
+      <rotorDragCoefficient>0.000919012</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+    <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>motor8_joint</jointName>
+      <linkName>motor8_link</linkName>
+      <turningDirection>cw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>521</maxRotVelocity>
+      <motorConstant>0.0002888</motorConstant>
+      <momentConstant>0.07077</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>7</motorNumber>
+      <rotorDragCoefficient>0.000919012</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+    <!-- <joint name='servo1_joint' type='revolute'>
+      <pose relative_to='base_link'>0.28021042003423502 0 -0.089000000000000107 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>servo1_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='servo1_link'>
+      <pose relative_to='servo1_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.111922504501582 3.7761597163149699e-05 -0.015143520458418399 0 0 0</pose>
+        <mass>0.254743902167132</mass>
+        <inertia>
+          <ixx>9.2544912812678499e-05</ixx>
+          <ixy>-6.7417856117328803e-08</ixy>
+          <ixz>8.2093572817290896e-06</ixz>
+          <iyy>0.000219644450674318</iyy>
+          <iyz>-3.1948695612875602e-08</iyz>
+          <izz>0.00020247960271457899</izz>
+        </inertia>
+      </inertial>
+      <collision name='servo1_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/servo1_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='servo1_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/servo1_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.137254909 0.887254894 1 1</diffuse>
+          <ambient>0.137254909 0.887254894 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='servo2_joint' type='revolute'>
+      <pose relative_to='servo1_link'>0.23599999999999999 0 0 0 0 0</pose>
+      <parent>servo1_link</parent>
+      <child>servo2_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='servo2_link'>
+      <pose relative_to='servo2_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.134468370827862 -0.0046937223539966202 -0.024660070576773899 0 0 0</pose>
+        <mass>0.197276898810649</mass>
+        <inertia>
+          <ixx>7.7458240245493803e-05</ixx>
+          <ixy>1.08301476706774e-05</ixy>
+          <ixz>1.6978492907027002e-05</ixz>
+          <iyy>0.000155617291980798</iyy>
+          <iyz>6.6187159742511097e-08</iyz>
+          <izz>0.00014861797328066299</izz>
+        </inertia>
+      </inertial>
+      <collision name='servo2_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/servo2_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='servo2_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/servo2_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 0.25</diffuse>
+          <ambient>1 1 1 0.25</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='servo3_joint' type='revolute'>
+      <pose relative_to='servo2_link'>0.217959088643632 -0.030499999999999999 -0.030499999999999899 1.5707963267949003 0 0</pose>
+      <parent>servo2_link</parent>
+      <child>servo3_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='servo3_link'>
+      <pose relative_to='servo3_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.072419292781796998 -0.000294582500038644 -0.012611170864327399 0 0 0</pose>
+        <mass>0.117942371270869</mass>
+        <inertia>
+          <ixx>4.8070441605977398e-05</ixx>
+          <ixy>-7.1893282692207199e-07</ixy>
+          <ixz>2.72336068449419e-05</ixz>
+          <iyy>0.00020027085201274701</iyy>
+          <iyz>-3.4213974745183399e-08</iyz>
+          <izz>0.000192305124819832</izz>
+        </inertia>
+      </inertial>
+      <collision name='servo3_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/servo3_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='servo3_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/servo3_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='servo4_joint' type='revolute'>
+      <pose relative_to='servo3_link'>0.118020453905155 0 -0.030500000000001901 1.5707963267949003 -5.5511151231257827e-17 1.5707963267949003</pose>
+      <parent>servo3_link</parent>
+      <child>servo4_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='servo4_link'>
+      <pose relative_to='servo4_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.000236989073017918 0.0061131275003181596 0.077853501013553594 0 0 0</pose>
+        <mass>0.14155470096943201</mass>
+        <inertia>
+          <ixx>7.0704975979951404e-05</ixx>
+          <ixy>-7.3944502381525102e-07</ixy>
+          <ixz>1.88370944053506e-08</ixz>
+          <iyy>6.3839563112818104e-05</iyy>
+          <iyz>-1.15984242108473e-05</iyz>
+          <izz>5.5860108098224799e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='servo4_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/servo4_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='servo4_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/servo4_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='servo5_joint' type='revolute'>
+      <pose relative_to='servo4_link'>0 0.0305000000000024 0.112 1.5707963267949003 -1.5707963267948966 0</pose>
+      <parent>servo4_link</parent>
+      <child>servo5_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='servo5_link'>
+      <pose relative_to='servo5_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.054629999999999998 0.0042081999999999996 -0.021999000000000001 0 0 0</pose>
+        <mass>0.13563</mass>
+        <inertia>
+          <ixx>5.4656e-05</ixx>
+          <ixy>-6.2307000000000003e-06</ixy>
+          <ixz>1.7034e-05</ixz>
+          <iyy>7.2035999999999999e-05</iyy>
+          <iyz>7.4090000000000004e-09</iyz>
+          <izz>6.6755999999999996e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='servo5_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/servo5_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='servo5_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/servo5_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 0.25</diffuse>
+          <ambient>1 1 1 0.25</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='servo6_joint' type='revolute'>
+      <pose relative_to='servo5_link'>0.091499994832627302 0.031649999999999401 -0.030500000593218401 -1.5707963267949003 0 0</pose>
+      <parent>servo5_link</parent>
+      <child>servo6_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='servo6_link'>
+      <pose relative_to='servo6_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.066850657892701101 -1.2832836208220701e-05 -0.010481186641236 0 0 0</pose>
+        <mass>0.088666818433917202</mass>
+        <inertia>
+          <ixx>2.4413995289530098e-05</ixx>
+          <ixy>9.7483711526212699e-09</ixy>
+          <ixz>1.7568336971308701e-05</ixz>
+          <iyy>0.000139262347108058</iyy>
+          <iyz>6.1224757212967099e-09</iyz>
+          <izz>0.00013408723241428901</izz>
+        </inertia>
+      </inertial>
+      <collision name='servo6_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/servo6_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='servo6_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/servo6_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 0.25</diffuse>
+          <ambient>1 1 1 0.25</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='servo7_joint' type='revolute'>
+      <pose relative_to='servo6_link'>0.1119 0 -0.031699999999999999 3.1415926535897931 1.5707926536359933 3.1415926535897931</pose>
+      <parent>servo6_link</parent>
+      <child>servo7_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='servo7_link'>
+      <pose relative_to='servo7_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0077857569447726703 -0.000135487857316625 0.062463903716951902 0 0 0</pose>
+        <mass>0.27246486458160402</mass>
+        <inertia>
+          <ixx>0.00085716982582650697</ixx>
+          <ixy>-6.4851233063761002e-08</ixy>
+          <ixz>5.3618463562033397e-06</ixz>
+          <iyy>5.3924456777113401e-05</iyy>
+          <iyz>1.08370812726322e-07</iyz>
+          <izz>0.00084882685837615803</izz>
+        </inertia>
+      </inertial>
+      <collision name='servo7_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/servo7_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='servo7_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta/meshes/servo7_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990196109 1 1 1</diffuse>
+          <ambient>0.990196109 1 1 1</ambient>
+        </material>
+      </visual>
+    </link> -->
+  </model>
+</sdf>
