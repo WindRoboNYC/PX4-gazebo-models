@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdf version='1.9'>
+  <model name='w_beta_arm'>
+    <link name="robotic_arm_attach_link">
+    </link>
+    <joint name='servo1_joint' type='revolute'>
+      <pose relative_to='robotic_arm_attach_link'>0 0 0 0 0 0</pose>
+      <parent>robotic_arm_attach_link</parent>
+      <child>servo1_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-1</lower>
+          <upper>1</upper>
+        </limit>
+        <dynamics>
+          <damping>1.000</damping>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>1</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+    <link name='servo1_link'>
+      <pose relative_to='servo1_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.111922504501582 3.7761597163149699e-05 -0.015143520458418399 0 0 0</pose>
+        <mass>0.53</mass>
+        <inertia>
+          <ixx>6.3660748735162E-04</ixx>
+          <ixy>7.50382844572863E-06</ixy>
+          <ixz>-2.79781040654546E-03</ixz>
+          <iyy>2.39378430755839E-02</iyy>
+          <iyz>-1.32710895957586E-06</iyz>
+          <izz>2.35111034729351E-02</izz>
+        </inertia>
+      </inertial>
+      <!-- <collision name='servo1_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta_arm/meshes/servo1_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision> -->
+      <visual name='servo1_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta_arm/meshes/servo1_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 0.25</diffuse>
+          <ambient>1 1 1 0.25</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='servo2_joint' type='revolute'>
+      <pose relative_to='servo1_link'>0.23599999999999999 0 0 0 0 0</pose>
+      <parent>servo1_link</parent>
+      <child>servo2_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-1</lower>
+          <upper>1</upper>
+        </limit>
+        <dynamics>
+          <damping>1.000</damping>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>1</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+    <link name='servo2_link'>
+      <pose relative_to='servo2_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.134468370827862 -0.0046937223539966202 -0.024660070576773899 0 0 0</pose>
+        <mass>0.51</mass>
+        <inertia>
+          <ixx>7.23978707968121E-04</ixx>
+          <ixy>-3.34010261745074E-04</ixy>
+          <ixz>-3.11139269036096E-03</ixz>
+          <iyy>2.34161975505037E-02</iyy>
+          <iyz>4.55704940750211E-05</iyz>
+          <izz>2.30392206509604E-02</izz>
+        </inertia>
+      </inertial>
+      <!-- <collision name='servo2_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta_arm/meshes/servo2_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision> -->
+      <visual name='servo2_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta_arm/meshes/servo2_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 0.25</diffuse>
+          <ambient>1 1 1 0.25</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='servo3_joint' type='revolute'>
+      <pose relative_to='servo2_link'>0.217959088643632 -0.030499999999999999 -0.030499999999999899 1.5707963267949003 0 0</pose>
+      <parent>servo2_link</parent>
+      <child>servo3_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-1</lower>
+          <upper>1</upper>
+        </limit>
+        <dynamics>
+          <damping>1.000</damping>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>1</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+    <link name='servo3_link'>
+      <pose relative_to='servo3_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.072419292781796998 -0.000294582500038644 -0.012611170864327399 0 0 0</pose>
+        <mass>0.42</mass>
+        <inertia>
+          <ixx>5.29622128377583E-04</ixx>
+          <ixy>-1.1241502719062E-05</ixy>
+          <ixz>-7.26761015475803E-04</ixz>
+          <iyy>2.26659765379103E-03</iyy>
+          <iyz>9.14071095220662E-06</iyz>
+          <izz>1.92576025786232E-03</izz>
+        </inertia>
+      </inertial>
+      <!-- <collision name='servo3_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta_arm/meshes/servo3_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision> -->
+      <visual name='servo3_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta_arm/meshes/servo3_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='servo4_joint' type='revolute'>
+      <pose relative_to='servo3_link'>0.118020453905155 0 -0.030500000000001901 1.5707963267949003 -5.5511151231257827e-17 1.5707963267949003</pose>
+      <parent>servo3_link</parent>
+      <child>servo4_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-1</lower>
+          <upper>1</upper>
+        </limit>
+        <dynamics>
+          <damping>1.000</damping>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>1</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+    <link name='servo4_link'>
+      <pose relative_to='servo4_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.000236989073017918 0.0061131275003181596 0.077853501013553594 0 0 0</pose>
+        <mass>0.45</mass>
+        <inertia>
+          <ixx>5.2814333020521E-03</ixx>
+          <ixy>6.72719371752209E-06</ixy>
+          <ixz>-3.27795100676883E-05</ixz>
+          <iyy>5.21349160974916E-03</iyy>
+          <iyz>1.54704251151099E-04</iyz>
+          <izz>2.67612275522675E-04</izz>
+        </inertia>
+      </inertial>
+      <!-- <collision name='servo4_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta_arm/meshes/servo4_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision> -->
+      <visual name='servo4_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta_arm/meshes/servo4_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='servo5_joint' type='revolute'>
+      <pose relative_to='servo4_link'>0 0.0305000000000024 0.112 1.5707963267949003 -1.5707963267948966 0</pose>
+      <parent>servo4_link</parent>
+      <child>servo5_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-1</lower>
+          <upper>1</upper>
+        </limit>
+        <dynamics>
+          <damping>1.000</damping>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>1</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+    <link name='servo5_link'>
+      <pose relative_to='servo5_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.054629999999999998 0.0042081999999999996 -0.021999000000000001 0 0 0</pose>
+        <mass>0.38</mass>
+        <inertia>
+          <ixx>5.21038184582318E-04</ixx>
+          <ixy>1.42474880679905E-04</ixy>
+          <ixz>-1.1860199418385E-03</ixz>
+          <iyy>4.98659978146248E-03</iyy>
+          <iyz>-3.58331885586141E-05</iyz>
+          <izz>4.76852299098788E-03</izz>
+        </inertia>
+      </inertial>
+      <!-- <collision name='servo5_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta_arm/meshes/servo5_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision> -->
+      <visual name='servo5_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta_arm/meshes/servo5_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 0.25</diffuse>
+          <ambient>1 1 1 0.25</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='servo6_joint' type='revolute'>
+      <pose relative_to='servo5_link'>0.091499994832627302 0.031649999999999401 -0.030500000593218401 -1.5707963267949003 0 0</pose>
+      <parent>servo5_link</parent>
+      <child>servo6_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-1</lower>
+          <upper>1</upper>
+        </limit>
+        <dynamics>
+          <damping>1.000</damping>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>1</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+    <link name='servo6_link'>
+      <pose relative_to='servo6_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.066850657892701101 -1.2832836208220701e-05 -0.010481186641236 0 0 0</pose>
+        <mass>0.313</mass>
+        <inertia>
+          <ixx>3.58437765863175E-04</ixx>
+          <ixy>-4.55455431463514E-07</ixy>
+          <ixz>-5.07484665310118E-04</ixz>
+          <iyy>1.53161435189967E-03</iyy>
+          <iyz>3.70892767809497E-07</iyz>
+          <izz>1.25730538001629E-03</izz>
+        </inertia>
+      </inertial>
+      <!-- <collision name='servo6_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta_arm/meshes/servo6_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision> -->
+      <visual name='servo6_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta_arm/meshes/servo6_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 0.25</diffuse>
+          <ambient>1 1 1 0.25</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='servo7_joint' type='revolute'>
+      <pose relative_to='servo6_link'>0.1119 0 -0.031699999999999999 3.1415926535897931 1.5707926536359933 3.1415926535897931</pose>
+      <parent>servo6_link</parent>
+      <child>servo7_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-1</lower>
+          <upper>1</upper>
+        </limit>
+        <dynamics>
+          <damping>1.000</damping>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>1</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+    <link name='servo7_link'>
+      <pose relative_to='servo7_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0077857569447726703 -0.000135487857316625 0.062463903716951902 0 0 0</pose>
+        <mass>0.285</mass>
+        <inertia>
+          <ixx>2.14505981182907E-03</ixx>
+          <ixy>-4.53386847421733E-08</ixy>
+          <ixz>-1.44964338983573E-04</ixz>
+          <iyy>1.38027892636088E-03</iyy>
+          <iyz>-3.29337064830304E-06</iyz>
+          <izz>8.72029689155727E-04</izz>
+        </inertia>
+      </inertial>
+      <!-- <collision name='servo7_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta_arm/meshes/servo7_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision> -->
+      <visual name='servo7_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta_arm/meshes/servo7_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990196109 1 1 1</diffuse>
+          <ambient>0.990196109 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>
