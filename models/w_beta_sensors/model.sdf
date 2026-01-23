@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdf version='1.9'>
+  <model name='w_beta_sensors'>
+    <!-- <self_collide>false</self_collide>
+    <static>false</static> -->
+    
+    <link name="sensors_attach_link">
+    </link>
+
+    
+    <joint name='fish_eye_camera1_joint' type='fixed'>
+      <pose relative_to='sensors_attach_link'>-0.148846387576543 0.16192999999999899 0.0118000000000029 0 0 1.5707963267949003</pose>
+      <parent>sensors_attach_link</parent>
+      <child>fish_eye_camera1_link</child>
+    </joint>
+    <link name='fish_eye_camera1_link'>
+      <pose relative_to='sensors_attach_link'>-0.148846387576543 0.16192999999999899 0.0118000000000029 0 0 1.5707963267949003</pose>
+      <inertial>
+        <mass>0.006</mass>
+        <inertia>
+          <ixx>1.50659375000001E-04</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.78024160996595E-04</iyy>
+          <iyz>0</iyz>
+          <izz>2.6427278599659E-04</izz>
+        </inertia>
+      </inertial>
+      <visual name='fish_eye_camera1_link_visual'>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta_sensors/meshes/fish_eye_camera1_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 1 1</ambient>
+          <diffuse>0 0 1 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <!-- <sensor name="camera" type="camera">
+        <gz_frame_id>fish_eye_camera1_link</gz_frame_id>
+        <camera>
+          <horizontal_fov>2.0</horizontal_fov>
+          <image>
+            <format>R8G8B8</format>
+            <width>1280</width>
+            <height>720</height>
+          </image>
+          <clip>
+            <near>0.05</near>
+            <far>15000</far>
+          </clip>
+        </camera>
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+        <visualize>true</visualize>
+      </sensor>  -->
+    </link>
+
+    
+    <joint name='fish_eye_camera2_joint' type='fixed'>
+      <pose relative_to='sensors_attach_link'>-0.148846387576543 0.16192999999999899 -0.11695 0 0 1.5707963267949003</pose>
+      <parent>sensors_attach_link</parent>
+      <child>fish_eye_camera2_link</child>
+    </joint>
+    <link name='fish_eye_camera2_link'>
+      <pose relative_to='sensors_attach_link'>-0.148846387576543 0.16192999999999899 -0.11695 0 0 1.5707963267949003</pose>
+      <inertial>
+        <mass>0.006</mass>
+        <inertia>
+          <ixx>1.50659375000001E-04</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.78024160996595E-04</iyy>
+          <iyz>0</iyz>
+          <izz>2.6427278599659E-04</izz>
+        </inertia>
+      </inertial>
+      <visual name='fish_eye_camera2_link_visual'>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta_sensors/meshes/fish_eye_camera2_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 1 1</ambient>
+          <diffuse>0 0 1 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <!-- <sensor name="camera" type="camera">
+        <gz_frame_id>fish_eye_camera2_link</gz_frame_id>
+        <pose>0 0 0 0 0 0</pose>
+        <camera>
+          <horizontal_fov>2.0</horizontal_fov>
+          <image>
+            <format>R8G8B8</format>
+            <width>1280</width>
+            <height>720</height>
+          </image>
+          <clip>
+            <near>0.05</near>
+            <far>15000</far>
+          </clip>
+        </camera>
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+        <visualize>true</visualize>
+      </sensor>  -->
+    </link>
+
+    
+    <joint name='fish_eye_camera3_joint' type='fixed'>
+      <pose relative_to='sensors_attach_link'>-0.14884638757654201 -0.16407000000000099 -0.11695 0 0 -1.5707963267948899</pose>
+      <parent>sensors_attach_link</parent>
+      <child>fish_eye_camera3_link</child>
+    </joint>
+    <link name='fish_eye_camera3_link'>
+      <pose relative_to='sensors_attach_link'>-0.14884638757654201 -0.16407000000000099 -0.11695 0 0 -1.5707963267948899</pose>
+      <inertial>
+        <mass>0.006</mass>
+        <inertia>
+          <ixx>1.50659375000001E-04</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.78024160996595E-04</iyy>
+          <iyz>0</iyz>
+          <izz>2.6427278599659E-04</izz>
+        </inertia>
+      </inertial>
+      <visual name='fish_eye_camera3_link_visual'>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta_sensors/meshes/fish_eye_camera3_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 1 1</ambient>
+          <diffuse>0 0 1 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <!-- <sensor name="camera" type="camera">
+        <gz_frame_id>fish_eye_camera3_link</gz_frame_id>
+        <camera>
+          <horizontal_fov>2.0</horizontal_fov>
+          <image>
+            <format>R8G8B8</format>
+            <width>1280</width>
+            <height>720</height>
+          </image>
+          <clip>
+            <near>0.05</near>
+            <far>15000</far>
+          </clip>
+        </camera>
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+        <visualize>true</visualize>
+      </sensor>  -->
+    </link>
+
+
+    <joint name='fish_eye_camera4_joint' type='fixed'>
+      <pose relative_to='sensors_attach_link'>-0.14884638757654101 -0.16407000000000099 0.0118000000000028 0 0 -1.5707963267948899</pose>
+      <parent>sensors_attach_link</parent>
+      <child>fish_eye_camera4_link</child>
+    </joint>
+    <link name='fish_eye_camera4_link'>
+      <pose relative_to='sensors_attach_link'>-0.14884638757654101 -0.16407000000000099 0.0118000000000028 0 0 -1.5707963267948899</pose>
+      <inertial>
+        <mass>0.006</mass>
+        <inertia>
+          <ixx>1.50659375000001E-04</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.78024160996595E-04</iyy>
+          <iyz>0</iyz>
+          <izz>2.6427278599659E-04</izz>
+        </inertia>
+      </inertial>
+      <visual name='fish_eye_camera4_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta_sensors/meshes/fish_eye_camera4_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 1 1</ambient>
+          <diffuse>0 0 1 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <!-- <sensor name="camera" type="camera">
+        <gz_frame_id>fish_eye_camera4_link</gz_frame_id>
+        <camera>
+          <horizontal_fov>2.0</horizontal_fov>
+          <image>
+            <format>R8G8B8</format>
+            <width>1280</width>
+            <height>720</height>
+          </image>
+          <clip>
+            <near>0.05</near>
+            <far>15000</far>
+          </clip>
+        </camera>
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+        <visualize>true</visualize>
+      </sensor>  -->
+    </link>
+
+
+    <!-- <link name="OakD_link">
+      <pose relative_to='sensors_attach_link'>0.30199500000000001 -0.00107000000000001 0.032550000000000003 0 0 0</pose>
+      <inertial>
+        <mass>0.061</mass>
+        <inertia>
+          <ixx>0.0000460804</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0000055421</iyy>
+          <iyz>0</iyz>
+          <izz>0.0000436519</izz>
+        </inertia>
+      </inertial>
+      <visual name="OakD_link_visual">
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta_sensors/meshes/oak-d_camera_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="OakD-Lite/collision">
+        <pose>0.00358 -0.03 .014 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.0175 0.091 0.028</size>
+          </box>
+        </geometry>
+      </collision>
+      <sensor name="IMX214" type="camera">
+        <gz_frame_id>OakD_link</gz_frame_id>
+        <pose>0.01233 -0.03 .01878 0 0 0</pose>
+        <camera>
+          <horizontal_fov>1.204</horizontal_fov>
+          <image>
+            <width>1920</width>
+            <height>1080</height>
+          </image>
+          <clip>
+            <near>0.1</near>
+            <far>100</far>
+          </clip>
+        </camera>
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+        <visualize>true</visualize>
+      </sensor>
+      <sensor name="StereoOV7251" type="depth_camera">
+        <gz_frame_id>OakD_link</gz_frame_id>
+        <pose>0.01233 -0.03 .01878 0 0 0</pose>
+        <camera>
+          <horizontal_fov>1.274</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R_FLOAT32</format>
+          </image>
+          <clip>
+            <near>0.2</near>
+            <far>19.1</far>
+          </clip>
+        </camera>
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+        <visualize>true</visualize>
+        <topic>depth_camera</topic>
+      </sensor>
+      <gravity>true</gravity>
+      <velocity_decay />
+    </link> -->
+
+   
+    <joint name='radar_mr72_joint' type='fixed'>
+      <pose relative_to='sensors_attach_link'>0.288994999999999 0.135764992784983 0.089020582179689695 0 0 0</pose>
+      <parent>sensors_attach_link</parent>
+      <child>radar_mr72_link</child>
+    </joint>
+    <link name='radar_mr72_link'>
+      <pose relative_to='sensors_attach_link'>0.288994999999999 0.135764992784983 0.089020582179689695 0 0 0</pose>
+      <inertial>
+        <mass>3.41385615134989E-02</mass>
+        <inertia>
+          <ixx>1.50659375000001E-04</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.78024160996595E-04</iyy>
+          <iyz>0</iyz>
+          <izz>2.6427278599659E-04</izz>
+        </inertia>
+      </inertial>
+      <visual name='radar_mr72_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta_sensors/meshes/radar_mr_72_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 1 1</ambient>
+          <diffuse>0 0 1 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+    </link>
+
+
+    <joint name='radar_sp25_joint' type='fixed'>
+      <pose relative_to='sensors_attach_link'>0.31760500000000003 -0.0010700000000015101 0.075050000000000006 0 0 0</pose>
+      <parent>sensors_attach_link</parent>
+      <child>radar_sp25_link</child>
+    </joint>
+    <link name='radar_sp25_link'>
+      <pose relative_to='sensors_attach_link'>0.31760500000000003 -0.0010700000000015101 0.075050000000000006 0 0 0</pose>
+      <inertial>
+        <mass>1.58912765542746E-03</mass>
+        <inertia>
+          <ixx>1.50659375000001E-04</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.78024160996595E-04</iyy>
+          <iyz>0</iyz>
+          <izz>2.6427278599659E-04</izz>
+        </inertia>
+      </inertial>
+      <visual name='radar_sp25_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://w_beta_sensors/meshes/radar_sp25_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 1 1</ambient>
+          <diffuse>0 0 1 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+    </link>
+
+  </model>
+</sdf>
+

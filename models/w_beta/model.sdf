@@ -147,5 +147,13 @@
       <parent>base_link</parent>
       <child>robotic_arm_attach_link</child>
     </joint>
+    <include merge='true'>
+      <uri>w_beta_sensors</uri>
+      <pose relative_to='base_link'>0 0 0 0 0 0</pose>
+    </include>
+    <joint name="sensors_attach_joint" type="fixed">
+      <parent>base_link</parent>
+      <child>sensors_attach_link</child>
+    </joint>
   </model>
 </sdf>
